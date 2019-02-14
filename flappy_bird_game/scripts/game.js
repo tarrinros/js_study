@@ -17,10 +17,12 @@ pipe_bottom.src = 'images/flappy_bird_pipe_bottom.png';
 // gap between top and bottom pipes
 const gap = 90;
 
+var score = 0;
+
 // bird position
 const bird_x_pos = 10;
-let bird_y_pos = 150;
-const gravity = 1;
+var bird_y_pos = 150;
+const gravity = 1.5;
 
 // blocks
 const pipes = [];
@@ -32,6 +34,7 @@ pipes[0] = {
 
 // functions
 function draw() {
+
   // draws image on the canvas (img variable , pos x, pos y)
   context.drawImage(background, 0, 0);
   for (let i = 0; i < pipes.length; i++) {
@@ -55,10 +58,10 @@ function draw() {
       location.reload(); // Reloading page
     }
 
-    // if (pipes[i].x == 5) {
-    //   score++;
+    if (pipes[i].x == 5) {
+      score++;
     //   score_audio.play();
-    // }
+    }
   }
 
   context.drawImage(foreground, 0, canvas.height - foreground.height);
@@ -66,17 +69,21 @@ function draw() {
 
   bird_y_pos += gravity;
 
+  // score display
+  context.fillStyle = "#000";
+  context.font = "24px Arial";
+  context.fillText("Score: " + score, 10, canvas.height - 20);
+
   // loop for draw function
   requestAnimationFrame(draw);
 }
 
 // Calls 'draw' function when pipe_bottom loads
-pipe_bottom.onload = draw();
+pipe_bottom.onload = draw;
 
 // bird moves up when any key pressed
-
 function moveUp() {
-  bird_y_pos -= 20;
+  bird_y_pos -= 25;
 }
 
 document.addEventListener('keydown', moveUp);
