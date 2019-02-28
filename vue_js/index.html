@@ -46,6 +46,10 @@
 </div>
 
 <div id="arr">
+  <h3>{{ textSearch }} (length: {{ textSearch.length }})</h3>
+
+  <input type="text" size="50" v-model="textSearch">
+
   <button type="button" @click="getCities">Download</button>
 
   <ul>
@@ -75,9 +79,19 @@
     data: {
       hashtags: [],
       cities: [],
+      textSearch: '',
       url: {
         hashtags: 'https://dka-develop.ru/api?type=hashtag',
         cities: 'https://dka-develop.ru/api?type=city'
+      }
+    },
+
+    //Two sided binding
+    watch: {
+      textSearch: function () {
+        if (this.textSearch.length > 3) {
+          this.textSearch = 'Change this text';
+        }
       }
     },
 
