@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Simple vue app</title>
+
+</head>
+<body>
+
+  <!--VUE prefix 'v-bind:' can whrite shortly ':'-->
+  <div id="app" v-bind:title="message + ' ' + 'It`s a title.'">
+    {{ message }}
+  </div>
+
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Привет, Vue!'
+      }
+    })
+  </script>
+</body>
+</html>
