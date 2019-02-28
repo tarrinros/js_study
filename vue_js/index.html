@@ -12,7 +12,7 @@
 <body>
 
   <!--VUE prefix 'v-bind:' can whrite shortly ':'-->
-  <div id="app" v-bind:title="message + ' ' + 'It`s a title.'">
+  <div id="vuesh" v-bind:title="message + ' ' + 'It`s a title.'">
 
     <template  v-if="status == 1">
       <h1>Here is the one</h1>
@@ -33,16 +33,52 @@
     <h1 v-show="status"> V-show header</h1>
 
     <!--VUE with classes-->
-    <div :class="{ active: isActive }">Element is active</div>
+    <!--If classname wrote  by "kebab-case" use '' -->
+    <!--You can use multiply classes static and vue-dynamic-->
+    <div class="class-default list" :class="{ active: isActive, 'btn-default': isBtn }">Element is active</div>
+
+    <!--ternary <condition-->
+    <div :class="[ isActive ? 'enabled btn' : 'disabled a', '' ]"></div>
+
+    <!--styles-->
+    <div :style="{ color: 'red', width: width + 'px'}">Text</div>
+  </div>
+
+  <div id="arr">
+    <ul>
+      <li v-for="(item, index) in list">
+        index {{index + 1}} : {{ item }}
+      </li>
+    </ul>
+
+    <ul>
+      <li v-for="user in users">
+        {{ user.id }}: {{ user.name }}
+      </li>
+    </ul>
   </div>
 
   <script type="text/javascript">
-    var app = new Vue({
-      el: '#app',
+    var vuesh = new Vue({
+      el: '#vuesh',
       data: {
         message: 'Привет, Vue!',
         status: 1,
-        isActive: false
+        isActive: false,
+        isBtn: true,
+        width: 500
+      }
+    });
+
+    // Array
+    var arr = new Vue({
+      el: '#arr',
+      data: {
+        list: ['one', 'two', 'three', 'four', 'five'],
+        users: [
+          {id: 1, name: 'Fedor'},
+          {id: 2, name: 'Richard'}
+        ]
       }
     })
   </script>
