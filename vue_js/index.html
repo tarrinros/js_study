@@ -45,30 +45,7 @@
   </div>
 
   <div id="arr">
-    <ul>
-      <li v-for="(item, index) in list">
-        index {{index + 1}} : {{ item }}
-      </li>
-    </ul>
-
-    <ul>
-      <li v-for="user in users">
-        {{ user.id }}: {{ user.name }}
-      </li>
-    </ul>
-    <!--@click == v-on:click function-->
-    <table border="1" @click="functionName2">
-      <thead>
-        <th>IDs</th>
-        <th>Name</th>
-      </thead>
-      <tbody>
-      <tr v-for="user in users">
-        <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
-      </tr>
-      </tbody>
-    </table>
+    <button @click="high">Count is: {{ counter }}</button>
   </div>
 
   <script type="text/javascript">
@@ -87,19 +64,19 @@
     var arr = new Vue({
       el: '#arr',
       data: {
-        list: ['one', 'two', 'three', 'four', 'five'],
-        users: [
-          {id: 1, name: 'Fedor'},
-          {id: 2, name: 'Richard'}
-        ]
+        counter: 1
       },
+
+      // Callback after create
+      created: function() {
+        // Calls list inside this vue object
+        this.high();
+      },
+
       methods: {
-        functionName(){
-          alert('function_1');
-        },
-        functionName2: function(){
-          alert('function_2');
-        },
+       high() {
+         this.counter++;
+       }
       }
     })
   </script>
