@@ -13,14 +13,29 @@
 
   <!--VUE prefix 'v-bind:' can whrite shortly ':'-->
   <div id="app" v-bind:title="message + ' ' + 'It`s a title.'">
-    {{ message }}
+
+    <template  v-if="status == 1">
+      <h1>Here is the one</h1>
+      <p>and status is {{ status }}</p>
+    </template>
+
+    <template  v-else-if="status == 2">
+      <h1> Here is the 2</h1>
+      <p>and status is {{ status }}</p>
+    </template>
+
+    <template  v-else>
+      <h1>{{ message }}</h1>
+      <p>and status is {{ status }}</p>
+    </template>
   </div>
 
   <script type="text/javascript">
     var app = new Vue({
       el: '#app',
       data: {
-        message: 'Привет, Vue!'
+        message: 'Привет, Vue!',
+        status: 23
       }
     })
   </script>
