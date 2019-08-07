@@ -5,14 +5,18 @@ import AddTodo from "./Todo/AddTodo";
 
 function App() {
   const [todos, setTodos] = React.useState([
-      {id: 1, completed: false, title: 'Купить хлеб'},
-      {id: 2, completed: false, title: 'Купить масло'},
-      {id: 3, completed: false, title: 'Купить молоко'}
+      // {id: 1, completed: false, title: 'Купить хлеб'},
+      // {id: 2, completed: false, title: 'Купить масло'},
+      // {id: 3, completed: false, title: 'Купить молоко'}
     ]
   );
 
   useEffect(() => {
-
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
+      .then(response => response.json())
+      .then(todos => {
+        setTodos(todos)
+    })
   }, []);
 
   function toggleTodo(id) {
