@@ -1,14 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <h1>Todo application</h1>
+    <hr>
+    <TodoList />
   </div>
 </template>
 
 <script>
-
+import TodoList from '@/components/TodoList'
 export default {
   name: 'app',
   components: {
+    TodoList: TodoList
   }
 }
 </script>
