@@ -14,8 +14,8 @@
     <hr>
     <Loader v-if="loading"/>
     <TodoList
-      v-else-if="todos.length"
-      v-bind:todos="todos"
+      v-else-if="filteredTodos.length"
+      v-bind:todos="filteredTodos"
       @remove-todo="removeTodo"/>
     <p v-else>No Todos!</p>
   </div>
@@ -54,8 +54,21 @@
     //     console.log(value)
     //   }
     // },
+    computed: {
+     filteredTodos() {
+       if (this.filter === 'all') {
+         return this.todos
+       }
 
+       if (this.filter === 'completed') {
+         return this.todos.filter(todo => todo.completed)
+       }
 
+       if (this.filter === 'not-completed') {
+         return this.todos.filter(todo => !todo.completed)
+       }
+     }
+    },
     components: {
       TodoList,
       AddTodo,
